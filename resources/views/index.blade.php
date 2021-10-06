@@ -13,6 +13,7 @@
     <style>
         .bg-light {
             background: #0f306f !important;
+            box-shadow: 0px -1px 14px 3px #0f306f;
         }
 
         .row {
@@ -53,12 +54,12 @@
 
 
     <div class="row">
-        <div class="content">
+        <div class="content" style="border-radius: 8px; background: #eeecec">
             <div class="col-md-6" class="my-button">
-                <button type="button" class="my-btn btn btn-primary btn-lg">Admin</button>
+                <a href="{{ route('admin.index') }}" class="my-btn btn btn-primary btn-lg">Admin</a>
                 <a href="{{ route('doctor.index') }}" class="my-btn btn btn-primary btn-lg">Doctor</a>
-                <button type="button" class="my-btn btn btn-primary btn-lg">Employee</button>
-                <button type="button" class="my-btn btn btn-primary btn-lg">Department</button>
+                <a href="{{route('employee.index')}}" class="my-btn btn btn-primary btn-lg">Employee</a>
+                <a href="{{route('department.index')}}" class="my-btn btn btn-primary btn-lg">Department</a>
                 <a href="{{ route('speclized.index') }}" class="my-btn btn btn-primary btn-lg">Specilization</a>
 
             </div>

@@ -30,5 +30,10 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     
     Route::resource('doctor', App\Http\Controllers\DocotrController::class)->except(['show']);
     Route::resource('speclized', App\Http\Controllers\SpecController::class)->except(['show']);
+    Route::resource('employee', App\Http\Controllers\EmployeeController::class)->except(['show']);
+    Route::resource('department', App\Http\Controllers\DepartmentController::class)->except(['show']);
+    Route::resource('admin', App\Http\Controllers\AdminController::class)->except(['show']);
+    
+    
 
 // });

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>doctors</title>
+    <title>Employee</title>
 
     {{-- style --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
@@ -28,45 +28,42 @@
 
 
     <div class="row">
-        <form action="{{ route('doctor.update', $doctor->id) }}" method="POST">
+        <form action="{{ route('employee.update' , $employee->id) }}" method="POST">
             @csrf
             {{ method_field('put') }}
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="inputEmail4">First_name</label>
                     <input type="text" name="first_name" class="form-control" id="inputEmail4"
-                        value="{{ $doctor->first_name }}">
+                        value="{{ $employee->first_name }}">
                 </div>
 
                 <div class="form-group col-md-6">
                     <label for="inputEmail4">Last_name</label>
                     <input type="text" name="last_name" class="form-control" id="inputEmail4"
-                        value="{{ $doctor->last_name }}">
-                </div>
-
-                <div class="form-group col-md-6">
-                    <label for="inputEmail4">Email</label>
-                    <input type="email" name="email" class="form-control" id="inputEmail4"
-                        value="{{ $doctor->email }}">
+                        value="{{ $employee->last_name }}">
                 </div>
 
                 <div class="form-group col-md-6">
                     <label for="inputPassword4">Address</label>
                     <input type="text" name="address" class="form-control" id="inputPassword4"
-                        value="{{ $doctor->address }}">
+                        value="{{ $employee->address }}">
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="inputAddress">Phone</label>
+                    <input type="text" name="phone" class="form-control" id="inputAddress"
+                        value="{{ $employee->phone }}">
                 </div>
             </div>
-            <div class="form-group">
-                <label for="inputAddress">Phone</label>
-                <input type="text" name="phone" class="form-control" id="inputAddress" value="{{ $doctor->phone }}">
-            </div>
+
             <div class="form-row">
 
                 <div class="form-group col-md-4">
-                    <label for="inputState">Speciolization</label>
-                    <select id="inputState" class="form-control" name="specioliza_id">
-                        @foreach ($speclized as $value)
-                            <option value="{{ $value->id }}" @if ($doctor->specioliza_id == $value->id )
+                    <label for="inputState">Department</label>
+                    <select id="inputState" class="form-control" name="dept_id">
+                        @foreach ($department as $value)
+                            <option value="{{ $value->id }}" @if ($employee->dept_id == $value->id )
                                 selected
                             @endif>{{ $value->name }}</option>
                         @endforeach

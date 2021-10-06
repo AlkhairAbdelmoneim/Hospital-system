@@ -27,7 +27,17 @@ class DocotrController extends Controller
     public function store(Request $request)
     {
 
-        Doctors::create($request->except(['_token']));
+        $request_data = $request->validate([
+
+            'first_name' => 'required|max:50|min:2',
+            'last_name' => 'required|max:50|min:2',
+            'email' => 'required|email',
+            'phone' => 'required|min:10',
+            'address' => 'required',
+            'specioliza_id' => 'required',
+        ]);
+
+        Doctors::create($request_data);
 
         return redirect()->route('doctor.index')->with('success' , 'ِAdd new doctor successfully');  
     }
@@ -42,12 +52,13 @@ class DocotrController extends Controller
     public function edit(Doctors $doctors ,$id)
     {
 
-    $doctor = Doctors::find($id);
+        $speclized = Speclization::all();
+        $doctor = Doctors::find($id);
 
-    if (!$speclized) {
+    if (!$doctor) {
         return redirect()->route('doctor.index')->with('error' , 'Not found!');
     }
-        return view('doc_edit' ,compact('doctor'));
+        return view('doc_edit' ,compact('doctor','speclized'));
     }
 
 
@@ -61,6 +72,8 @@ class DocotrController extends Controller
             'email' => 'required|email',
             'phone' => 'required|min:10',
             'address' => 'required',
+            'specioliza_id' => 'required',
+            
         ]);
 
         $doctor->update($request_data);
@@ -70,9 +83,9 @@ class DocotrController extends Controller
 
     public function destroy($id)
     {
-        $doctors = Doctors::find($id);
+        $doctor = Doctors::find($id);
 
-         $doctors->delete();
+         $doctor->delete();
         return redirect()->route('doctor.index')->with('success' , 'Deleted doctor successfully'); 
     }
 }
